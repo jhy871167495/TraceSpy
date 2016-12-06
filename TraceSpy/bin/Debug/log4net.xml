@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net-net-1.0" />
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+  </configSections>
+  <log4net>
+    <root>
+      <level value="ALL"/>
+      <!--文件形式记录日志-->
+      <appender-ref ref="LogFileAppender"/>
+    </root>
+
+    <!--日志定义输出到文件中-->
+    <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <param name="File" value="Log/LinkageLog.txt"/>
+      <param name="AppendToFile" value="true"/>
+      <!--<param name="RollingStyle" value="Date"/>-->
+      <!--按照文件的大小进行变换日志文件-->
+      <rollingStyle value="Size"/>
+      <!--最大变换数量-->
+      <maxSizeRollBackups value="1000"/>
+      <!--最大文件大小-->
+      <maximumFileSize value="100MB"/>
+      <param name="DatePattern" value="&quot;Logs_&quot;yyyyMMdd&quot;.txt&quot;"/>
+      <param name="StaticLogFileName" value="false"/>
+      <layout type="log4net.Layout.PatternLayout">
+        <param name="ConversionPattern" value="%message" />
+        <param name="Header" value="----------------------header--------------------------&#13;&#10;"/>
+        <param name="Footer" value="----------------------footer--------------------------&#13;&#10;"/>
+      </layout>
+    </appender>
+  </log4net>
+</configuration>

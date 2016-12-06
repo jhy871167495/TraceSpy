@@ -1,0 +1,6 @@
+C:\Users\Rox\Source\Repos\TraceSpy\TraceSpyService\bin\Debug\TraceSpyService.exe.config
+C:\Users\Rox\Source\Repos\TraceSpy\TraceSpyService\bin\Debug\TraceSpyService.exe
+C:\Users\Rox\Source\Repos\TraceSpy\TraceSpyService\bin\Debug\TraceSpyService.pdb
+C:\Users\Rox\Source\Repos\TraceSpy\TraceSpyService\obj\Debug\TraceSpyService.csprojResolveAssemblyReference.cache
+C:\Users\Rox\Source\Repos\TraceSpy\TraceSpyService\obj\Debug\TraceSpyService.exe
+C:\Users\Rox\Source\Repos\TraceSpy\TraceSpyService\obj\Debug\TraceSpyService.pdb

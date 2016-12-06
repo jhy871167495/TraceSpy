@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using log4net;
 
 namespace TraceSpy
 {
@@ -19,6 +20,8 @@ namespace TraceSpy
         private static MethodInfo _decodeMessage;
         private const string TextItemName = "Text";
 
+        private ILog logger = LogManager.GetLogger(typeof (Main));
+        
         private Image _shieldImage;
         private IntPtr _bufferReadyEvent;
         private IntPtr _dataReadyEvent;
@@ -140,8 +143,8 @@ namespace TraceSpy
 #if DEBUG
             AllocConsole();
             Console.WriteLine("Note: this console is shown in DEBUG mode only.");
-            openConfigFileToolStripMenuItem.Visible = true;
-            openConfigDirectoryToolStripMenuItem.Visible = true;
+            //openConfigFileToolStripMenuItem.Visible = true;
+            //openConfigDirectoryToolStripMenuItem.Visible = true;
             debugToolStripMenuItem.Visible = true;
             debugToolStripMenuItem.Click += (sender, e) => SendTestTraces();
 #endif
@@ -400,6 +403,11 @@ namespace TraceSpy
                 {
                     try
                     {
+                        if (listView.Items.Count > 1000)
+                        {
+                            listView.Items.Clear();
+                        }
+
                         if (_queue.Count > 0)
                         {
                             bool beginUpdate = false;
@@ -421,6 +429,11 @@ namespace TraceSpy
                                 }
 
                                 double seconds = (double)line.Ticks / Stopwatch.Frequency;
+
+                                string log = string.Format("{0}, {1}, {2}, [{3}]{4}\r", line.Index.ToString(), DateTime.Now, line.ProcessName, line.Pid, line.Text);
+
+                                //Logger.Instance.WriteLog(log);
+                                logger.Info(log);
 
                                 // split list into multiple
                                 string[] lines = line.Text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
